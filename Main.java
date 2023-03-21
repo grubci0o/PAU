@@ -3,36 +3,49 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IllegalClassSize {
 
-        Student stud1 = new Student("piotr", "czubat",StudentCondition.OBECNY, 2001, 550);
-        Student stud2 = new Student("konrad", "wyka",StudentCondition.OBECNY, 2001, 350);
-        Student stud3 = new Student("pawel", "cdsa",StudentCondition.OBECNY, 2001, 250);
 
-        Class klasa3F = new Class("klasa3F",40);
+        Student firstStudent = new Student("Piotr", "Maciaszek", StudentCondition.ODRABIAJĄCY, 2005,
+                15);
 
-        klasa3F.addStudent(stud1);
-        klasa3F.addStudent(stud2);
-        klasa3F.addStudent(stud3);
+        Student secondStudent = new Student("Wojciech", "Mackowiak", StudentCondition.OBECNY, 2001,
+                60);
+
+        Student thirdStudent = new Student("Jan", "Krzanowski", StudentCondition.OBECNY, 2003,
+                7.5);
+
+        Student fourthStudent = new Student("Maciej", "Łabuz", StudentCondition.ZWOLNIONY, 2002,
+                0);
+
+        Student fifthStudent = new Student("Maksymilian", "Kubiczek", StudentCondition.CHORY, 2002,
+                150);
 
 
-        List<Student> part = klasa3F.partialSearch("czu");
-        for (Student stud : part){
-            System.out.println(stud);
-        }
-        System.out.println(klasa3F.countByCondition(StudentCondition.NIEOBECNY));
+        Class pau = new Class("Programowanie aplikacji uzytkowych", 30);
+        Class fem = new Class("Metoda elementow skonczonych", 15);
 
-        List<Student> sortedListName = klasa3F.sortByName();
-        List<Student> sortedListPoints = klasa3F.sortByPointsDescending();
+        pau.addStudent(firstStudent);
+        pau.addStudent(thirdStudent);
+        pau.addStudent(fifthStudent);
 
-        System.out.println("Punktami");
-        for (Student stud : sortedListPoints){
-            System.out.println(stud);
-        }
+        fem.addStudent(secondStudent);
+        fem.addStudent(fourthStudent);
 
-        System.out.println("Imionami");
-        for (Student stud : sortedListName){
-            System.out.println(stud);
-        }
+        pau.summary();
+        fem.summary();
 
-        System.out.println(klasa3F.maxPoints());
+
+        fem.getStudent(fourthStudent);
+
+        System.out.println(fem.size);
+
+        System.out.println(pau.countByCondition(StudentCondition.OBECNY));
+
+
+        ClassContainer agh = new ClassContainer();
+        agh.addClass("PAU",pau);
+        agh.addClass("FEM", fem);
+        agh.summary();
+
+
     }
 }

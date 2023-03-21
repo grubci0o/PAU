@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,14 @@ public class ClassContainer {
     public void addClass(String name, int size){
         Class c = new Class(name, size);
         groups.put(name, c);
+    }
+
+    public void addClass(String name, Class c){
+        groups.put(name, c);
+    }
+
+    public ClassContainer(){
+        this.groups = new HashMap<>();
     }
 
     public void removeClass(String name){
