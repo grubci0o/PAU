@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="JavaGUI" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxgui.HelloViewController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btnWidokStudenta" layoutX="60.0" layoutY="164.0" mnemonicParsing="false" onAction="#changeSceneStudentView" text="Widok studenta" />
+            <Button fx:id="btnWidokNauczyciela" layoutX="369.0" layoutY="164.0" mnemonicParsing="false" onAction="#changeSceneTeacherView" text="Widok nauczyciela" />
+            <TextField fx:id="surnameTextField" layoutX="35.0" layoutY="123.0" />
+            <Label fx:id="surnameLabel" layoutX="59.0" layoutY="78.0" text="Nazwisko studenta" />
+         </children></AnchorPane>
+  </content>
+</TitledPane>

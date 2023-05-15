@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="714.0" prefWidth="913.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafxgui.TeacherViewController">
+   <children>
+      <TextField fx:id="gradeTextField" layoutX="199.0" layoutY="263.0" promptText="Ocena" />
+      <TextField fx:id="conditionTextField" layoutX="57.0" layoutY="103.0" promptText="Stan studenta" />
+      <TextField fx:id="createSurnameField" layoutX="57.0" layoutY="152.0" promptText="Nazwisko" />
+      <Button fx:id="addGradeBtn" layoutX="334.0" layoutY="343.0" mnemonicParsing="false" onAction="#addGrade" text="Dodaj ocene" />
+      <Button fx:id="changeStudentConditionBtn" layoutX="300.0" layoutY="103.0" mnemonicParsing="false" onAction="#changeStudentCondition" text="Zmien stan Studenta" />
+      <Button fx:id="createStudentBtn" layoutX="300.0" layoutY="152.0" mnemonicParsing="false" text="Utworz konto studenta" />
+      <Button fx:id="changeSceneBtn" layoutX="31.0" layoutY="343.0" mnemonicParsing="false" onAction="#changeScene" text="Wróć" />
+      <TextField fx:id="textFieldClassNameAddGrade" layoutX="415.0" layoutY="263.0" promptText="Nazwa klasy" />
+      <Button fx:id="createClassBtn" layoutX="112.0" layoutY="610.0" mnemonicParsing="false" onAction="#createClass" text="Stworz klase" />
+      <TextField fx:id="classNameField" layoutX="77.0" layoutY="478.0" promptText="Nazwa klasy" />
+      <TextField fx:id="classMaxSizeField" layoutX="77.0" layoutY="534.0" promptText="Pojemnosc klasy" />
+   </children>
+</AnchorPane>
