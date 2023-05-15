@@ -133,7 +133,14 @@ public class TeacherViewController {
     }
 
     public void createClass() {
+
         String className = classNameField.getText();
+        if (className.equals("") || classMaxSizeField.equals("")) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Wystapil blad zweryfikuj dane");
+            a.show();
+            return;
+        }
         Integer maxSize = Integer.parseInt(classMaxSizeField.getText());
 
         try {

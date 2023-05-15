@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 
 public class Class implements Serializable {
 
-    public int size = 0;
+    public int size = 1;
+    @Export
     public String className;
     private List<Student> studentList;
+    @Export
     public int maxSize;
 
     public Class(String className, int maxSize) {
@@ -37,6 +39,9 @@ public class Class implements Serializable {
 
     public void addStudentMarks(Student student, Double mark){
         List<Double> marks = student.studentMarks.get(className);
+        if (marks == null) {
+            marks = new ArrayList<Double>();
+        }
         marks.add(mark);
     }
 

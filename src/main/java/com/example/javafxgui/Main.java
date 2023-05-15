@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
 
     public static void main(String args[]) throws IllegalClassSize, IOException, ClassNotFoundException {
-        System.out.println("Hello");
 
         ClassContainer classContainer = new ClassContainer();
 
@@ -33,6 +35,9 @@ public class Main {
         Class pau = new Class("Programowanie aplikacji uzytkowych", 30);
         Class fem = new Class("Metoda elementow skonczonych", 15);
 
+        //z class iteracja po student list i tam robic writeln(class name, studentSurname)
+        //potem iteracja po student list wczesniejszej znalezc studentow z takim nazwiskiem i dodawac do odpowiednich klas
+
 
         pau.addStudent(firstStudent, StudentCondition.OBECNY);
         pau.addStudent(secondStudent, StudentCondition.CHORY);
@@ -53,23 +58,19 @@ public class Main {
         classContainer.addClass("Programowanie aplikacji uzytkowych", pau);
         classContainer.addClass("Metoda elementow skonczonych", fem);
 
-        ArrayList<String> names = classContainer.getClassName();
-        for(String s: names) {
-            System.out.println(s);
-        }
-        //classContainer.classesSummary();
-        /*classContainer.fillHashSet();
-        for (Student student : classContainer.studentSet) {
-            for (String className : student.studentConditionMap.keySet()) {
-                student.studentConditionMap.put(className, StudentCondition.OCZEKUJACY);
-            }
-        }
-        System.out.println(classContainer.studentSet);
-        System.out.println(firstStudent);
-         */
 
-        classContainer.serializeData();
-        ClassContainer testConn = HelloApplication.deserializeData();
-        System.out.println(testConn);
+        for (Field f : Student.class.getDeclaredFields()) {
+            f.setAccessible(true);
+            System.out.println(f.getName());
+        }
+
+
+        List<Field> fList = new ArrayList<>(Arrays.asList(Student.class.getFields()));
+        //fList.removeIf(field -> !field.isAnnotationPresent(Export.class));
+
+        for (Field f : fList) {
+            System.out.println(f.getName());
+        }
+
     }
 }

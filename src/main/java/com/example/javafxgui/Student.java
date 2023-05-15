@@ -4,10 +4,15 @@ import java.io.Serializable;
 import java.util.*;
 
 public final class Student implements Comparable<Student>, Serializable {
+
+    @Export
     private  String name;
+
+    @Export
     private  String surname;
     public Map<String, ArrayList<Double>> studentMarks;
     public Map<String, StudentCondition> studentConditionMap;
+    @Export
     private  int dob;
 
     public Student(
@@ -51,6 +56,7 @@ public final class Student implements Comparable<Student>, Serializable {
         studentConditionMap.put(className, condition);
     }
 
+
     public int getDob() {
         return dob;
     }
@@ -61,7 +67,7 @@ public final class Student implements Comparable<Student>, Serializable {
 
     public Double getAverage(String className){
         List<Double> marks = studentMarks.get(className);
-        if (marks == null){
+        if (marks == null || marks.size() == 0){
             return 0.0;
         }
         return marks.stream().reduce(0.0, (subtotal, element) -> subtotal + element) / marks.size();

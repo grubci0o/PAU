@@ -3,8 +3,12 @@ package com.example.javafxgui;
 import java.util.ArrayList;
 
 public class TableViewClass {
+    @Export
     String name;
+
+    @Export
     ArrayList<Double> grades;
+    @Export
     Double average;
 
     public TableViewClass(String name, ArrayList<Double> grades, Double average) {

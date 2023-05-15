@@ -13,10 +13,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static com.example.javafxgui.HelloApplication.main;
 import static com.example.javafxgui.HelloApplication.classes;
@@ -67,7 +66,7 @@ public class StudentView implements Initializable {
         ArrayList<String> classNames = classes.getClassName();
         coursesListView.getItems().clear();
         coursesListView.getItems().addAll(classNames);
-        coursesListView.getItems().add("Default");
+        coursesListView.getItems().add("Dowolny");
 
     }
 
@@ -93,25 +92,26 @@ public class StudentView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameColumn.setCellValueFactory(new PropertyValueFactory<TableViewClass, String>("name"));
-        gradesColumn.setCellValueFactory(new PropertyValueFactory<TableViewClass, ArrayList<Double>>("grades"));
-        averageColumn.setCellValueFactory(new PropertyValueFactory<TableViewClass, Double>("average"));
+        Field[] allFields = TableViewClass.class.getDeclaredFields();
+        Field nameField = Arrays.stream(allFields).filter(field -> field.getName().equals("name")).findFirst().get();
+        Field gradesField = Arrays.stream(allFields).filter(field -> field.getName().equals("grades")).findFirst().get();
+        Field averageField = Arrays.stream(allFields).filter(field -> field.getName().equals("average")).findFirst().get();
+        nameColumn.setCellValueFactory(new PropertyValueFactory<TableViewClass, String>(nameField.getName()));
+        gradesColumn.setCellValueFactory(new PropertyValueFactory<TableViewClass, ArrayList<Double>>(gradesField.getName()));
+        averageColumn.setCellValueFactory(new PropertyValueFactory<TableViewClass, Double>(averageField.getName()));
 
         //listview
 
         coursesListView.setOnMouseClicked(event -> {
-            String test = coursesListView.getSelectionModel().getSelectedItems().toString();
-            //System.out.println(prettySummary(test));
             summaryTooltip.setText(prettySummary(coursesListView.getSelectionModel().getSelectedItems().toString()));
         });
     }
 
     public String prettySummary(String className) {
         String cleanedClassName = className.substring(1, className.length() - 1);
-        System.out.println(cleanedClassName);
         Student student = classes.findStudent(studentSurname);
         if (student != null) {
-            if (cleanedClassName.equals("Default")) {
+            if (cleanedClassName.equals("Dowolny")) {
                 return student.getAverageAllClasses().toString();
             }
             StudentCondition condition = student.studentConditionMap.get(cleanedClassName);
@@ -127,7 +127,6 @@ public class StudentView implements Initializable {
     }
 
     public void enroll(ActionEvent e) {
-        //sprawdzic czy student nie znajduje sie juz w danym przedmiocie
         if (!coursesListView.getSelectionModel().selectionModeProperty().getValue().equals("")) {
             try {
                 Student stud = classes.findStudent(studentSurname);
