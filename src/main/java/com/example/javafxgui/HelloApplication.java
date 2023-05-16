@@ -123,8 +123,8 @@ public class HelloApplication extends Application {
                 String[] values = line.split(",");
                 students.add(new Student(values[0], values[1], Integer.parseInt(values[2])));
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ignored) {
+
         }
         return students;
     }
@@ -156,6 +156,9 @@ public class HelloApplication extends Application {
             }
            }
    }
+       catch (IOException ignored) {
+
+       }
     }
 
    public void saveGradesToCSV() throws IOException {
@@ -186,8 +189,8 @@ public class HelloApplication extends Application {
                String[] values = line.split(",");
                classesList.add(new Class(values[0], Integer.parseInt(values[1])));
            }
-   } catch (IOException e) {
-           throw new RuntimeException(e);
+   } catch (IOException ignored) {
+
        }
        return classesList;
     }
